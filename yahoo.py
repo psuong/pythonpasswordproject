@@ -8,9 +8,7 @@ def bruteForce():
     #fname = "yahoocracked.txt"
     newFile = open(fname, "w")
     newFile.write("This is the format of the file:\nLine #\tEmail\tPassword\n\n")
-
     emailRegex = r'[0-9]:+[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z0-9]'
-    numRegex = r'[0-9]:'
     index = 0
 
     with open("Yahoo.txt") as emailList:

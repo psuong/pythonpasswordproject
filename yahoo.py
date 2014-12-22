@@ -1,3 +1,4 @@
+# The Yahoo had no hashes to compare, it was reading off a text file and scrapping the data.
 import re
 
 def bruteForce():
@@ -17,10 +18,11 @@ def bruteForce():
             index += 1
             emailResult = re.search(emailRegex, line)
             if emailResult:
+                #creates a substring for the original account info (email:password)
                 string = line [line.index(':')::]
-                lineNum = str(index)
-                accountInfo = ''.join((lineNum, string))
+                accountInfo = ''.join((str(index), string))
                 newFile.write(accountInfo)
+    #close both files
     yahooList.close()
     newFile.close()
 

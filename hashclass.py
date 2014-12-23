@@ -13,3 +13,6 @@ class zeroTable:
         valueCount = self.dict.get(key)
         self.dict[key] = valueCount + 1
         return
+    def getKey(self,key):
+        info = self.dict.get(key)
+        print info

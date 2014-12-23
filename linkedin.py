@@ -1,36 +1,55 @@
 import hashlib
 import re
 import copy
-from hashclass import zeroTable
+from hashclass import zeroTable, newTable
 
-def makeZeroDict():
+def makeDict():
     zeroDict = zeroTable()
     zeroRegex = r'[00000]'
-    fname = 'zeroLinkedin.txt'
-    newFile = open(fname, "w")
-    with open("Linkedin.txt") as hashList:
+    with open('Linkedin.txt') as hashList:
         for hashLine in hashList:
-            result = re.search(zeroRegex, hashLine)
+            result = re.match(zeroRegex, hashLine)
+            newHash = hashLine.rstrip()
             if result:
-                newHash = hashLine[5::]
-                if zeroDict.findKey(newHash):
+                if zeroDict.isKey(newHash):
                     zeroDict.addKey(newHash)
                 else:
                     zeroDict.initialInsert(newHash)
+            else:
+                makeNewDict(newHash)
+    print 'Finished dictionaries...'
     return zeroDict
 
-def checkPasswords(refDict):
-    newDict = zeroTable()
-    newDict = copy.copy(refDict)
-    with open('10k most common.txt') as passwordList:
-        for line in passwordList:
-            password = hashlib.sha1(line)
-            newDict.findKey(password.hexdigest())
-            newDict.getKey(password.hexdigest())
+#function makes a new dictionary object for sha1 hashes with random chars
+def makeNewDict(key):
+    newDict = newTable()
+    if key != '':
+        if newDict.isKey(key):
+            newDict.addKey(key)
+        else:
+            newDict.initialInsert(key)
+    return newDict
 
-makeZeroDict()
-checkPasswords(makeZeroDict())
+def customInput(refDict, refDict2):
+    print 'This function checks and see if a custom password exists in\nthe Linkedin.txt file.\n'
+    isTrue = True
+    while (isTrue):
+        input = raw_input("Type in a password: ")
+        password = hashlib.sha1(input)
+        hexNotation = password.hexdigest()
+        encrypt = ''.join(('00000', hexNotation[5::]))
+        #print 'Version 1: ', hexNotation
+        #print 'Version 2: ', encrypt
+        if refDict.isKey(encrypt):
+            refDict.getKey(encrypt)
+        elif refDict2.isKey(hexNotation):
+            refDict2.getKey(hexNotation)
+        choice = raw_input('Do you want to continue searching? (y/n) ')
+        if choice == 'y':
+            isTrue = True
+        else:
+            isTrue = False
 
-string = '123456'
-key = hashlib.sha1(string)
-print key.hexdigest()
+
+
+customInput(makeDict(), makeNewDict(''))

@@ -2,17 +2,36 @@
 class zeroTable:
     def __init__(self):
         self.dict = {}
-    def findKey(self, key):
-        isExistent = self.dict.has_key(key)
-        #self.dict.get(key)
-        return isExistent
+    def isKey(self, key):
+        doesExist = self.dict.has_key(key)
+        return doesExist
+    def getKey(self, key):
+        print 'Key: ', key
+        print 'Password found!'
+        return key
     def initialInsert(self, key):
         self.dict[key] = 0
         return
-    def addKey(self,key):
+    def addKey(self, key):
         valueCount = self.dict.get(key)
         self.dict[key] = valueCount + 1
         return
-    def getKey(self,key):
-        info = self.dict.get(key)
-        print info
+
+
+class newTable:
+    def __init__(self):
+        self.dict = {}
+    def isKey(self, key):
+        doesExist = self.dict.has_key(key)
+        return doesExist
+    def getKey(self, key):
+        print 'Key: ', key
+        print 'Password found!'
+        return key
+    def initialInsert(self, key):
+        self.dict[key] = 0
+        return
+    def addKey(self, key):
+        valueCount = self.dict.get(key)
+        self.dict[key] = valueCount + 1
+        return

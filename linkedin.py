@@ -1,6 +1,5 @@
 import hashlib
 import re
-import copy
 from hashclass import zeroTable, newTable
 
 def makeDict():
@@ -12,8 +11,12 @@ def makeDict():
             newHash = hashLine.rstrip()
             if result:
                 if zeroDict.isKey(newHash):
+                    #checking for duplicate inserts
+                    #print 'Duplicate Found!'
                     zeroDict.addKey(newHash)
                 else:
+                    #checking for unique inserts
+                    #print 'Unique Insert'
                     zeroDict.initialInsert(newHash)
             else:
                 makeNewDict(newHash)
@@ -50,6 +53,25 @@ def customInput(refDict, refDict2):
         else:
             isTrue = False
 
+def feedPasswords(refDict, refDict2):
+    print '...Building passwords...'
+    with open('10kmostcommon.txt') as lineList:
+        for line in lineList:
+            string = line.rstrip()
+            password = hashlib.sha1(string)
+            hexNotation = password.hexdigest()
+            encryption = ''.join(('00000', hexNotation[5::]))
+            if refDict.isKey(encryption):
+                refDict.updateKey(encryption, string)
+            elif refDict2.isKey(hexNotation):
+                refDict2.updateKey(encryption, string)
+    input = raw_input('Create a file name to store the passwords (file will already have a .txt extension: ')
+    refDict.writetoFile(input)
+    refDict2.writetoFile(input)
+    return
 
-
-customInput(makeDict(), makeNewDict(''))
+choose = input('Choose whether to use custom password check(1) or bruteforce the passwords(2): ')
+if choose == 1:
+    customInput(makeDict(), makeNewDict(''))
+else:
+    feedPasswords(makeDict(), makeNewDict(''))

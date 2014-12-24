@@ -16,3 +16,10 @@ Of the 10,000 common passwords, approximately 7,000 of them were used.
 
 Because the text files are large for Yahoo and Linkedin, contact
 -psuong95@gmail.com- for a copy of the files.
+
+Files are courtesy of the Computer Security Class at NYU Poly.
+
+Progress:
+Yahoo: Done
+Linkedin: Done
+Formsprings: Not Done

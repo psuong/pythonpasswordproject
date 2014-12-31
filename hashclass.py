@@ -60,11 +60,12 @@ class newTable:
         print 'Password found!'
         return key
     def initialInsert(self, key):
-        self.dict[key] = 0
+        value = 'NULL'
+        self.dict[key] = value
         return
     def addKey(self, key):
-        valueCount = self.dict.get(key)
-        self.dict[key] = valueCount + 1
+        value = 'Duplicate found!'
+        self.dict[key] = value
         return
     def updateKey(self, key, original):
         password = ''.join(('Password: ', original))

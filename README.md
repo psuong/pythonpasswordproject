@@ -14,6 +14,10 @@ I read from a textfile containing 10,000 common passwords.
 
 Of the 10,000 common passwords, approximately 7,000 of them were used.
 
+Formsprings is rather annoying/weird. While it uses SHA-256, the added extra
+characters to the password to strengthen the security. This password consists of
+your original password and a number from 00-99 at the front of the password.
+
 Because the text files are large for Yahoo and Linkedin, contact
 -psuong95@gmail.com- for a copy of the files.
 
@@ -22,5 +26,5 @@ Files are courtesy of the Computer Security Class at NYU Poly.
 Progress:
 Yahoo: Done
 Linkedin: Done
-Formsprings: Not Done
-GUI Implementation: Not Done
+Formsprings: In Progress
+GUI Implementation: Not Started
